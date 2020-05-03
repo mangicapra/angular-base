@@ -1,0 +1,10 @@
+<div class="check">
+  <input
+    (change)="onCheckboxChange($event, checkBox)"
+    [id]="'unique' + checkBox.name"
+    type="checkbox"
+    [value]="checkBox.value"
+    [checked]="isChecked"
+  />
+  <label [for]="'unique' + checkBox.name">{{ checkBox.name }} </label>
+</div>

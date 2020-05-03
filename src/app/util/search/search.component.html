@@ -1,0 +1,21 @@
+<!-- chage this structure to fit your needs -->
+<div class="search-box">
+  <input
+    [value]="searchInitValue || ''"
+    type="text"
+    #search
+    [placeholder]="placeholder || ''"
+  />
+  <img src="assets/images/search.svg" alt="Search" />
+  <span
+    (click)="
+      $event.stopPropagation();
+      search.value = '';
+      search.focus();
+      enteredTerm.emit('')
+    "
+    *ngIf="search.value"
+  >
+    <img src="assets/images/x.svg" alt="Clear" />
+  </span>
+</div>

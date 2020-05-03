@@ -1,0 +1,6 @@
+@import '../../../assets/general.scss';
+
+// example how to use preset styles defined in general.scss
+button {
+  @extend %primary-button-s;
+}

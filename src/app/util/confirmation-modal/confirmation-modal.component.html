@@ -1,0 +1,14 @@
+<div class="modal-header">
+  <h4 class="modal-title pull-left">{{ title }}</h4>
+</div>
+<div class="modal-body text-center">
+  <p>{{ message }}</p>
+</div>
+<div class="modal-footer">
+  <button type="button" (click)="bsModalRef.hide()" class="cancel">
+    Cancel
+  </button>
+  <button type="button" (click)="triggerAction()" class="create">
+    {{ buttonLabel }}
+  </button>
+</div>

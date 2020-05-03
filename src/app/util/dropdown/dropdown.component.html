@@ -1,0 +1,114 @@
+<div
+  class="btn-group"
+  (isOpenChange)="isOpen = $event"
+  [insideClick]="false"
+  dropdown
+>
+  <button
+    id="dd123trigger"
+    [class.isOpen]="isOpen"
+    dropdownToggle
+    type="button"
+    class="dropdown-toggle"
+    aria-controls="dd123"
+  >
+    <span
+      class="noItem"
+      *ngIf="initSelection === undefined; else hasSelected"
+      >{{ placeholder }}</span
+    >
+    <ng-template #hasSelected>
+      <span>{{ initSelection }}</span>
+    </ng-template>
+
+    <svg
+      *ngIf="!isOpen; else close"
+      xmlns="http://www.w3.org/2000/svg"
+      width="11.764"
+      height="10"
+      viewBox="0 0 11.764 10"
+    >
+      <defs>
+        <style>
+          .arrow,
+          .arrowb {
+            fill: none;
+          }
+          .arrowb {
+            stroke: #595346;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-width: 2px;
+          }
+        </style>
+      </defs>
+      <g transform="translate(0.981 0.211)">
+        <rect
+          class="arrow"
+          width="10"
+          height="10"
+          transform="translate(0 -0.211)"
+        />
+        <path
+          class="arrowb"
+          d="M6,9l4.468,4.468L14.936,9"
+          transform="translate(-5.567 -5.677)"
+        />
+      </g>
+    </svg>
+
+    <ng-template #close>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="11.764"
+        height="10"
+        viewBox="0 0 11.764 10"
+      >
+        <defs>
+          <style>
+            .arrow,
+            .arrowb {
+              fill: none;
+            }
+            .arrowb {
+              stroke: #595346;
+              stroke-linecap: round;
+              stroke-linejoin: round;
+              stroke-width: 2px;
+            }
+          </style>
+        </defs>
+        <g transform="translate(10.783 9.789) rotate(180)">
+          <rect
+            class="arrow"
+            width="10"
+            height="10"
+            transform="translate(0 -0.211)"
+          />
+          <path
+            class="arrowb"
+            d="M6,9l4.468,4.468L14.936,9"
+            transform="translate(-5.567 -5.677)"
+          />
+        </g>
+      </svg>
+    </ng-template>
+  </button>
+
+  <ul
+    id="dd123"
+    *dropdownMenu
+    class="dropdown-menu"
+    role="menu"
+    aria-labelledby="dd123trigger"
+  >
+    <li
+      *ngFor="let item of items"
+      (click)="selectOption(item)"
+      class="position-relative"
+      role="menuitem"
+    >
+      {{ item.name }}
+    </li>
+  </ul>
+</div>

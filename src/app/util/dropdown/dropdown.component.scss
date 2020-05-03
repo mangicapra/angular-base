@@ -1,0 +1,62 @@
+@import '../../../assets/general.scss';
+:host {
+  display: flex;
+  width: 100%;
+}
+.btn-group {
+  width: 100%;
+  button {
+    @extend %helper-button-m;
+    position: relative;
+    padding: 5px 12px;
+    width: 100% !important;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    &:hover {
+      background: transparent linear-gradient(359deg, #d0f5df 0%, #ffffff 100%)
+        0% 0% no-repeat padding-box;
+    }
+    &:focus {
+      border-color: #44b498;
+      background: transparent linear-gradient(182deg, #c5ebd6 0%, #d0f5df 100%)
+        0% 0% no-repeat padding-box;
+      outline: none;
+    }
+    &:active,
+    &:focus:active {
+      border-color: #44b498;
+      box-shadow: 0 0 0 4px #dbfbe7;
+      background-color: #fff;
+    }
+    &.isOpen {
+      border-color: #44b498;
+      box-shadow: 0 0 0 4px #dbfbe7;
+      background-color: #fff;
+    }
+    &:after {
+      display: none;
+    }
+    .noItem {
+      color: #8c867b;
+    }
+  }
+  .dropdown-menu {
+    border-color: #e0dcd3;
+    box-shadow: 0px 0px 3px 3px rgba(0, 0, 0, 0.161);
+    width: 100%;
+    li {
+      padding: 8px 12px;
+      color: #2e2a22;
+      font-size: 14px;
+      line-height: 20px;
+      margin-bottom: 2px;
+      &:hover,
+      &:focus,
+      &:active {
+        background-color: #e2fbeb;
+        cursor: pointer;
+      }
+    }
+  }
+}

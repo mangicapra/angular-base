@@ -1,0 +1,109 @@
+<div
+  class="searchAuto"
+  dropdown
+  (isOpenChange)="showSearchBar($event)"
+  [insideClick]="true"
+>
+  <input
+    dropdownToggle
+    readonly
+    [placeholder]="placeholder || ''"
+    class="search"
+    [class.isOpen]="isOpen"
+    [value]="selectedVal || ''"
+  />
+
+  <svg
+    *ngIf="!isOpen; else close"
+    xmlns="http://www.w3.org/2000/svg"
+    width="11.764"
+    height="10"
+    viewBox="0 0 11.764 10"
+  >
+    <defs>
+      <style>
+        .aDown,
+        .b {
+          fill: none;
+        }
+        .b {
+          stroke: #595346;
+          stroke-linecap: round;
+          stroke-linejoin: round;
+          stroke-width: 2px;
+        }
+      </style>
+    </defs>
+    <g transform="translate(0.981 0.211)">
+      <rect
+        class="aDown"
+        width="10"
+        height="10"
+        transform="translate(0 -0.211)"
+      />
+      <path
+        class="b"
+        d="M6,9l4.468,4.468L14.936,9"
+        transform="translate(-5.567 -5.677)"
+      />
+    </g>
+  </svg>
+
+  <ng-template #close>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="11.764"
+      height="10"
+      viewBox="0 0 11.764 10"
+    >
+      <defs>
+        <style>
+          .aDown,
+          .b {
+            fill: none;
+          }
+          .b {
+            stroke: #595346;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-width: 2px;
+          }
+        </style>
+      </defs>
+      <g transform="translate(10.783 9.789) rotate(180)">
+        <rect
+          class="aDown"
+          width="10"
+          height="10"
+          transform="translate(0 -0.211)"
+        />
+        <path
+          class="b"
+          d="M6,9l4.468,4.468L14.936,9"
+          transform="translate(-5.567 -5.677)"
+        />
+      </g>
+    </svg>
+  </ng-template>
+
+  <div class="search-bar dropdown-menu" *dropdownMenu>
+    <div class="search-box">
+      <input autocomplete="off" type="text" #search />
+      <img src="assets/images/search.svg" alt="Search" />
+      <span
+        (click)="$event.stopPropagation(); search.value = ''; search.focus()"
+        *ngIf="search.value"
+      >
+        <img src="assets/images/x.svg" alt="Clear" />
+      </span>
+    </div>
+    <div class="search-result" *ngIf="showSearchData">
+      <p *ngFor="let val of values" (click)="chooseValue(val)">
+        {{ val.name }}
+      </p>
+      <p class="noRes" *ngIf="values.length > 0">
+        There are no results for your search.
+      </p>
+    </div>
+  </div>
+</div>
