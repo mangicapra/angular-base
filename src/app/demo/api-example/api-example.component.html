@@ -1,0 +1,50 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">
+        ID
+      </th>
+      <th scope="col">
+        Name
+      </th>
+      <th scope="col">
+        Date of birth
+      </th>
+      <th scope="col">
+        Date of dead
+      </th>
+      <th scope="col">
+        Books
+      </th>
+      <th scope="col">
+        Photos
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr
+      *ngFor="
+        let author of authors
+          | paginate: { itemsPerPage: perPage, currentPage: p, totalItems: 50 }
+      "
+    >
+      <th scope="row">{{ author?.id }}</th>
+      <td>
+        <a [routerLink]="'/demo/authors/' + author?.id">{{ author?.name }}</a>
+      </td>
+      <td>{{ author?.date_of_birth | date }}</td>
+      <td>{{ author?.date_of_death | date }}</td>
+      <td>
+        {{ author?.books.length }}
+      </td>
+      <td>
+        {{ author?.photos.length }}
+      </td>
+    </tr>
+  </tbody>
+</table>
+<app-paging
+  (perPageSelected)="handlePerPageChange($event)"
+  (pageSelected)="handlePageChange($event)"
+  *ngIf="authors?.length > 0"
+></app-paging>

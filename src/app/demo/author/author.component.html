@@ -1,0 +1,25 @@
+<ul>
+  <li>name: {{ author?.name }}</li>
+  <li>date of birth: {{ author?.date_of_birth | date }}</li>
+  <li>date of dead: {{ author?.date_of_death | date }}</li>
+  <li>birthplace: {{ author?.birthplace }}</li>
+</ul>
+
+<button (click)="updateAuthorName(author?.name)">Update name</button>
+
+<h4>Photos</h4>
+<img
+  class="mx-2"
+  *ngFor="let photo of author?.photos"
+  [src]="photo?.uri"
+  [alt]="photo?.title"
+/>
+
+<h4>Books</h4>
+
+<div *ngFor="let book of author?.books">
+  <p>ID: {{ book?.id }}</p>
+  <p>title: {{ book?.title }}</p>
+  <p>published: {{ book?.date_published | date }}</p>
+  <hr />
+</div>

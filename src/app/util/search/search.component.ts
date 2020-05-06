@@ -12,14 +12,14 @@ import { fromEvent } from 'rxjs';
 import { map, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 @Component({
-  selector: 'search',
+  selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SearchComponent implements OnInit {
-  @Input('searchInitValue') searchInitValue = '';
-  @Input('placeholder') placeholder: string;
+  @Input() searchInitValue = '';
+  @Input() placeholder: string;
 
   @ViewChild('search') search: ElementRef;
   @Output() enteredTerm = new EventEmitter<string>();

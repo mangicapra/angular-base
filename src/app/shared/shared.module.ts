@@ -10,6 +10,7 @@ import { ConfirmationModalComponent } from '../util/confirmation-modal/confirmat
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { ButtonLoaderDirective } from '../directives/button-loader.directive';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     DropdownComponent,
     DropdownSearchComponent,
     CheckboxComponent,
+    ButtonLoaderDirective,
     ConfirmationModalComponent,
   ],
   imports: [
@@ -33,6 +35,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     NgxPaginationModule,
     ModalModule,
     SearchComponent,
+    ButtonLoaderDirective,
     PagingComponent,
     DropdownComponent,
     DropdownSearchComponent,

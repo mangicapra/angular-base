@@ -12,22 +12,21 @@ import {
 import { SubSink } from 'subsink';
 import { fromEvent } from 'rxjs';
 import { map, debounceTime, distinctUntilChanged } from 'rxjs/operators';
-import { JsonApiQueryData } from 'angular2-jsonapi';
 
 @Component({
-  selector: 'dropdown-search',
+  selector: 'app-dropdown-search',
   templateUrl: './dropdown-search.component.html',
   styleUrls: ['./dropdown-search.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DropdownSearchComponent implements OnInit, OnDestroy {
   @ViewChild('search') search: ElementRef;
-  @Input('selectedVal') selectedVal = '';
-  @Input('placeholder') placeholder = '';
+  @Input() selectedVal = '';
+  @Input() placeholder = '';
   @Output() choosedVal = new EventEmitter<any>();
 
-  showSearchData: boolean = false;
-  isOpen: boolean = false;
+  showSearchData = false;
+  isOpen = false;
   values: any[];
   subs = new SubSink();
 
@@ -36,8 +35,8 @@ export class DropdownSearchComponent implements OnInit, OnDestroy {
   ngOnInit(): void {}
 
   ngOnDestroy(): void {
-    //Called once, before the instance is destroyed.
-    //Add 'implements OnDestroy' to the class.
+    // Called once, before the instance is destroyed.
+    // Add 'implements OnDestroy' to the class.
     this.subs.unsubscribe();
   }
 

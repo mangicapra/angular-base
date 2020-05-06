@@ -8,14 +8,14 @@ import {
 } from '@angular/core';
 
 @Component({
-  selector: 'checkbox',
+  selector: 'app-checkbox',
   templateUrl: './checkbox.component.html',
   styleUrls: ['./checkbox.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CheckboxComponent implements OnInit {
-  @Input('checkBox') checkBox: { name: string; value: number };
-  @Input('isChecked') isChecked: boolean;
+  @Input() checkBox: { name: string; value: number };
+  @Input() isChecked: boolean;
   @Output() checked = new EventEmitter<{
     checked: boolean;
     checkBox: { name: string; value: number };

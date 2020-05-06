@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './guards/auth.guard';
 import { LoginGuard } from './guards/login.guard';
-import { LibraryComponent } from './library/library.component';
+import { LibraryComponent } from './demo/library/library.component';
 
 const routes: Routes = [
   {
@@ -19,8 +19,9 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
-    path: 'library',
-    component: LibraryComponent,
+    path: 'demo',
+    loadChildren: () =>
+      import('./demo/demo.module').then((mod) => mod.DemoModule),
   },
 ];
 

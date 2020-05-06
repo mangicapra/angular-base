@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { SubSink } from 'subsink';
-import { ConfirmationModalComponent } from '../util/confirmation-modal/confirmation-modal.component';
+import { ConfirmationModalComponent } from '../../util/confirmation-modal/confirmation-modal.component';
 
 @Component({
   selector: 'app-library',
@@ -53,8 +53,12 @@ export class LibraryComponent implements OnInit {
   items: any = ['dasd', 'fsfsd', 'fsdfsdf', 'fsdfsdf', 'fsdfsdf'];
   p = 1;
   perPage = 10;
-  count: number = 100; // this is total number of items, it's used to display pages and it should be set after you get list
+  count = 100; // this is total number of items, it's used to display pages and it should be set after you get list
   // end of paging
+
+  // loading button
+  isLoading = false;
+  // end of loading button
 
   constructor(
     private modalService: BsModalService // for modal
@@ -149,4 +153,16 @@ export class LibraryComponent implements OnInit {
     this.p = ev === '' ? 1 : ev;
   }
   // end of paging
+
+  // load button
+  load() {
+    // change value to true
+    this.isLoading = !this.isLoading;
+
+    // here should go API call and after success or error return it to false
+    setTimeout(() => {
+      this.isLoading = !this.isLoading;
+    }, 3000);
+  }
+  // end of load button
 }

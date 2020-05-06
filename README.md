@@ -1,6 +1,38 @@
 # AngularSeed
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.26.
+This project will be used as a boilerplate for all angular project. Things that are used on a project:
+
+## SCSS
+
+Check SCSS documentation and get acquainted with it, also your component classes should be writted in BEM syntax. In short nested elements should have two underscores before name and states with two hyphen.
+
+<nav class="navigation">
+<a [class.navigation__button--active]="active " class="navigation__button"></a>
+</nav>
+
+## JSON-API
+
+Check https://www.npmjs.com/package/angular2-jsonapi for json api documentation and also check `/jsonapi` route when you run the project for implementation examples.
+
+## Service Worker
+
+Service worker already set up to cache static assets and can easily be extended to fit your needs (PWA, push notifications...)
+
+## Loaders
+
+There are two types of loaders: local and global. Local once will be displayed inside button, inputs.., globals will be displayed when fetch some data.
+
+To implement local loader check `/library` for it's implementation and also if you wish to replace current gif you just add one that you want and change name to one that is used by directive.
+
+/_ TO ADD GLOBAL LOADER_/
+
+## Components
+
+/_ TO ADD COMPONENTS DESCRIPTION_/
+
+## Clean code
+
+After you've examined everything, clean up a code
 
 ## Development server
 

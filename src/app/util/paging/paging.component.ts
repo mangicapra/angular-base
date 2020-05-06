@@ -7,14 +7,14 @@ import {
 } from '@angular/core';
 
 @Component({
-  selector: 'paging',
+  selector: 'app-paging',
   templateUrl: './paging.component.html',
   styleUrls: ['./paging.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PagingComponent implements OnInit {
-  selectedItem: string = '10';
-  isOpen: boolean = false;
+  selectedItem = '10';
+  isOpen = false;
 
   @Output() pageSelected = new EventEmitter();
   @Output() perPageSelected = new EventEmitter();

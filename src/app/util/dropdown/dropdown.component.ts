@@ -8,15 +8,15 @@ import {
 } from '@angular/core';
 
 @Component({
-  selector: 'dropdown',
+  selector: 'app-dropdown',
   templateUrl: './dropdown.component.html',
   styleUrls: ['./dropdown.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DropdownComponent implements OnInit {
-  @Input('items') items: any; // since structure can be unknown this is set to any
-  @Input('placeholder') placeholder: string;
-  @Input('initSelection') initSelection;
+  @Input() items: any; // since structure can be unknown this is set to any
+  @Input() placeholder: string;
+  @Input() initSelection;
   selectionInput;
 
   isOpen = false;
