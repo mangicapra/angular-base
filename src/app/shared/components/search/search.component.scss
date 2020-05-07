@@ -1,0 +1,49 @@
+@import '../../../../assets/general';
+
+.search-box {
+  width: 100%;
+  position: relative;
+  margin-bottom: 4px;
+  img:nth-child(2) {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 8px;
+  }
+  span {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 8px;
+    cursor: pointer;
+    padding: 8px;
+    width: 26px;
+    height: 26px;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    img {
+      width: 10px;
+      height: 10px;
+    }
+    &:hover {
+      background-color: #f7f7f5;
+    }
+    &:focus,
+    &:active {
+      background-color: #f2f0eb;
+    }
+  }
+  input {
+    @extend %input-adm;
+    width: 100%;
+    padding: 3px 30px 3px 33px;
+    font-weight: 400;
+    &:focus {
+      border-color: #44b498;
+      box-shadow: 0 0 0 4px #dbfbe7;
+      outline: none;
+    }
+  }
+}

@@ -1,3 +1,4 @@
 #!/bin/bash
 
-rm -rf src/app/testing-delete
+# rm -rf src/app/module/demo
+

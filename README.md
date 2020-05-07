@@ -42,6 +42,8 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
+When creating components first enter module to which they belong and then name (lets say we have admin module and in it we want to create user component), so command will go like this `ng g c admin-user`.
+
 ## Build
 
 Added `dop` flag so it doens't break connection with container when building app.
