@@ -11,12 +11,13 @@ import { Observable, Subject, EMPTY } from 'rxjs';
 import { AuthService } from '../service/auth.service';
 import { catchError, tap, switchMap } from 'rxjs/operators';
 import { Refresh } from '../../module/auth/model/refresh';
+import { LogService } from '@shared/service';
 
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
   refreshingAccessToken: boolean;
   accessTokenRefreshed: Subject<any> = new Subject();
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private logger: LogService) {}
 
   static addToken(req: HttpRequest<any>, tokenData: string): HttpRequest<any> {
     if (/refresh/.test(req.url) || /login/.test(req.url)) {
@@ -44,7 +45,7 @@ export class JwtInterceptor implements HttpInterceptor {
       return REFRESH.save(
         {},
         new HttpHeaders({
-          Authorization: 'Bearer ' + this.authService.getRefreshToken,
+          Authorization: `Bearer ${this.authService.getRefreshToken}`,
         })
       ).pipe(
         tap((token) => {
@@ -78,6 +79,12 @@ export class JwtInterceptor implements HttpInterceptor {
             })
           );
         }
+        this.logger.error(
+          'Error while making request',
+          error.url,
+          error.message,
+          error.error
+        );
         return EMPTY;
       })
     );
