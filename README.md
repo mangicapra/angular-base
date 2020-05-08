@@ -12,7 +12,7 @@ Check SCSS documentation and get acquainted with it, also your component classes
 
 ## JSON-API
 
-Check https://www.npmjs.com/package/angular2-jsonapi for json api documentation and also check `/jsonapi` route when you run the project for implementation examples.
+Check https://www.npmjs.com/package/angular2-jsonapi for json api documentation and also check `/demo/json-api` route when you run the project for implementation examples.
 
 ## Service Worker
 
@@ -22,7 +22,7 @@ Service worker already set up to cache static assets and can easily be extended 
 
 There are two types of loaders: local and global. Local once will be displayed inside button, inputs.., globals will be displayed when fetch some data.
 
-To implement local loader check `/library` for it's implementation and also if you wish to replace current gif you just add one that you want and change name to one that is used by directive.
+To implement local loader check `/demo/library` for it's implementation and also if you wish to replace current gif you just add one that you want and change name to one that is used by directive.
 
 /_ TO ADD GLOBAL LOADER_/
 
