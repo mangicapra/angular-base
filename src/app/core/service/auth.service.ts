@@ -6,7 +6,7 @@ import {
   JsonApiDatastore,
 } from 'angular2-jsonapi';
 import { environment } from 'src/environments/environment';
-import { Login, roles, Refresh } from '../../module/auth/models';
+import { Login, roles, Refresh } from '../../module/auth/model';
 import { HttpClient } from '@angular/common/http';
 
 const config: DatastoreConfig = {

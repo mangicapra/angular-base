@@ -7,7 +7,7 @@ import { JsonApiModule } from 'angular2-jsonapi';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { CommonModule } from '@angular/common';
-import { CoreModule } from '@core';
+import { CoreModule } from '@core/core.module';
 
 @NgModule({
   declarations: [AppComponent],

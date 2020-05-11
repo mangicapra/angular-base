@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { SubSink } from 'subsink';
-import { ConfirmationModalComponent } from '@shared';
+import { ConfirmationModalComponent } from '@shared/component';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-demo-library',
@@ -25,7 +26,7 @@ export class DemoLibraryComponent implements OnInit {
 
   // confirmation modal
   private bsModalRef: BsModalRef;
-  private subs = new SubSink();
+  private modalValue$ = new Subject();
   // end of confirmation modal
 
   // dropdown
@@ -66,6 +67,13 @@ export class DemoLibraryComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    this.modalValue$.next();
+    this.modalValue$.complete();
+  }
+
   // checkbox
   handleSingleCheckbox(ev: {
     checked: boolean;
@@ -102,11 +110,13 @@ export class DemoLibraryComponent implements OnInit {
       initialState,
     });
 
-    this.subs.sink = this.bsModalRef.content.submitAction.subscribe((data) => {
-      if (data) {
-        // add logic if user selects positive acction
-      }
-    });
+    this.bsModalRef.content.submitAction
+      .pipe(takeUntil(this.modalValue$))
+      .subscribe((data) => {
+        if (data) {
+          // add logic if user selects positive acction
+        }
+      });
   }
 
   // end of confirmation modal

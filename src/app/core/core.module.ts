@@ -2,8 +2,8 @@ import { NgModule, SkipSelf, Optional } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { JwtInterceptor } from './interceptors/jwt.interceptor';
-import { AuthService } from './services/auth.service';
+import { JwtInterceptor } from './interceptor/jwt.interceptor';
+import { AuthService } from './service/auth.service';
 
 @NgModule({
   declarations: [],

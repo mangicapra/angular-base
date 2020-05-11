@@ -5,7 +5,7 @@ import {
   JsonApiDatastore,
 } from 'angular2-jsonapi';
 import { HttpClient } from '@angular/common/http';
-import { Author, Photo, Serie, Book, Chapter, Store } from '../models';
+import { Author, Photo, Serie, Book, Chapter, Store } from '../model';
 
 const config: DatastoreConfig = {
   baseUrl: 'https://jsonapiplayground.reyesoft.com/v2',

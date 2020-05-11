@@ -9,9 +9,13 @@ import {
   EventEmitter,
   ChangeDetectionStrategy,
 } from '@angular/core';
-import { SubSink } from 'subsink';
-import { fromEvent } from 'rxjs';
-import { map, debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { fromEvent, Subject } from 'rxjs';
+import {
+  map,
+  debounceTime,
+  distinctUntilChanged,
+  takeUntil,
+} from 'rxjs/operators';
 
 @Component({
   selector: 'app-dropdown-search',
@@ -28,7 +32,9 @@ export class DropdownSearchComponent implements OnInit, OnDestroy {
   public showSearchData = false;
   public isOpen = false;
   public values: any[];
-  private subs = new SubSink();
+
+  private searchData$ = new Subject();
+  private event$ = new Subject();
 
   constructor() {}
 
@@ -37,7 +43,10 @@ export class DropdownSearchComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     // Called once, before the instance is destroyed.
     // Add 'implements OnDestroy' to the class.
-    this.subs.unsubscribe();
+    this.event$.next();
+    this.event$.complete();
+    this.searchData$.next();
+    this.searchData$.complete();
   }
 
   /**
@@ -49,13 +58,14 @@ export class DropdownSearchComponent implements OnInit, OnDestroy {
     if (state) {
       setTimeout(() => {
         this.search.nativeElement.focus();
-        this.subs.sink = fromEvent(this.search.nativeElement, 'input')
+        fromEvent(this.search.nativeElement, 'input')
           .pipe(
             map((event: any) => {
               return event.target.value;
             }),
             debounceTime(1000),
-            distinctUntilChanged()
+            distinctUntilChanged(),
+            takeUntil(this.event$)
           )
           .subscribe((text: string) => {
             this.doSearch(text);
@@ -74,12 +84,13 @@ export class DropdownSearchComponent implements OnInit, OnDestroy {
     } else {
       // here goes API call
       // this is example how it should be done, this might vary
-      // this.subs.sink = this.datastore
+      // this.datastore
       //   .findAll(Post, {
       //     filter: {
       //       term,
       //     },
       //   })
+      //   .pipe(takeUntil(this.searchData$))
       //   .subscribe(
       //     (posts: JsonApiQueryData<Post>) => (this.values = posts.getModels())
       //   );

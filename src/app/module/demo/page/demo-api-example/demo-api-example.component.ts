@@ -1,8 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { DemoService } from '../../services/demo.service';
-import { Author } from '../../models';
+import { DemoService } from '../../service/demo.service';
+import { Author } from '../../model';
 import { JsonApiQueryData } from 'angular2-jsonapi';
-import { SubSink } from 'subsink';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-demo-api-example',
@@ -14,7 +15,7 @@ export class DemoApiExampleComponent implements OnInit, OnDestroy {
   public p = 1;
   public authors: Author[];
 
-  private subs = new SubSink();
+  private getAuthors$ = new Subject();
 
   constructor(private store: DemoService) {}
 
@@ -25,15 +26,17 @@ export class DemoApiExampleComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     //Called once, before the instance is destroyed.
     //Add 'implements OnDestroy' to the class.
-    this.subs.unsubscribe();
+    this.getAuthors$.next();
+    this.getAuthors$.complete();
   }
 
   getAuthors(): void {
-    this.subs.sink = this.store
+    this.store
       .findAll(Author, {
         include: 'books,photos',
         page: { size: this.perPage, number: this.p },
       })
+      .pipe(takeUntil(this.getAuthors$))
       .subscribe((authors: JsonApiQueryData<Author>) => {
         this.authors = authors.getModels();
       });

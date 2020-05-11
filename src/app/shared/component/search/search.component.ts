@@ -9,9 +9,13 @@ import {
   ChangeDetectionStrategy,
   OnDestroy,
 } from '@angular/core';
-import { fromEvent } from 'rxjs';
-import { map, debounceTime, distinctUntilChanged } from 'rxjs/operators';
-import { SubSink } from 'subsink';
+import { fromEvent, Subject } from 'rxjs';
+import {
+  map,
+  debounceTime,
+  distinctUntilChanged,
+  takeUntil,
+} from 'rxjs/operators';
 
 @Component({
   selector: 'app-search',
@@ -26,7 +30,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   @ViewChild('search') search: ElementRef;
   @Output() enteredTerm = new EventEmitter<string>();
 
-  private subs = new SubSink();
+  private term$ = new Subject();
 
   constructor() {}
 
@@ -37,18 +41,20 @@ export class SearchComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     //Called once, before the instance is destroyed.
     //Add 'implements OnDestroy' to the class.
-    this.subs.unsubscribe();
+    this.term$.next();
+    this.term$.complete();
   }
 
   searchTerm() {
     setTimeout(() => {
-      this.subs.sink = fromEvent(this.search.nativeElement, 'input')
+      fromEvent(this.search.nativeElement, 'input')
         .pipe(
           map((event: any) => {
             return event.target.value;
           }),
           debounceTime(1000),
-          distinctUntilChanged()
+          distinctUntilChanged(),
+          takeUntil(this.term$)
         )
         .subscribe((text: string) => {
           this.searchInitValue = text;

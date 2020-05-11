@@ -1,8 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { DemoService } from '../../services/demo.service';
-import { Author } from '../../models';
-import { SubSink } from 'subsink';
+import { DemoService } from '../../service/demo.service';
+import { Author } from '../../model';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-demo-author',
@@ -13,7 +14,8 @@ export class DemoAuthorComponent implements OnInit, OnDestroy {
   public author: Author;
 
   private id: string;
-  private subs = new SubSink();
+  private getAuthor$ = new Subject();
+  private updateAuthor$ = new Subject();
 
   constructor(private route: ActivatedRoute, private store: DemoService) {}
 
@@ -27,13 +29,17 @@ export class DemoAuthorComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     //Called once, before the instance is destroyed.
     //Add 'implements OnDestroy' to the class.
-    this.subs.unsubscribe();
+    this.getAuthor$.next();
+    this.getAuthor$.complete();
+    this.updateAuthor$.next();
+    this.updateAuthor$.complete();
   }
   getAuthor(): void {
-    this.subs.sink = this.store
+    this.store
       .findRecord(Author, this.id, {
         include: 'books,photos',
       })
+      .pipe(takeUntil(this.getAuthor$))
       .subscribe((author: Author) => {
         this.author = author;
       });
@@ -42,15 +48,17 @@ export class DemoAuthorComponent implements OnInit, OnDestroy {
   updateAuthorName(name): void {
     const NEW_NAME = prompt('Change author name', name);
     if (NEW_NAME !== null) {
-      this.subs.sink = this.store
+      this.store
         .findRecord(Author, this.id, {
           include: 'books,photos',
         })
+        .pipe(takeUntil(this.updateAuthor$))
         .subscribe((author: Author) => {
           author.name = NEW_NAME;
           // this is required to make HTTP request
-          this.subs.sink = author
+          author
             .save()
+            .pipe(takeUntil(this.getAuthor$))
             // subscribe is a must call, even if it's left empty because cold http method returs cold Observable
             // it starts running upon subscription
             .subscribe((newAuthor: Author) => (this.author = newAuthor));
