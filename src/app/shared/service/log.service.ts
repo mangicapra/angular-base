@@ -40,12 +40,12 @@ export class LogService {
 
   private writeToLog(msg: string, level: LogLevel, params: any[]) {
     if (this.shouldLog(level)) {
-      let entry = new LogEntry();
+      const entry = new LogEntry();
       entry.message = msg;
       entry.level = level;
       entry.extraInfo = params;
       entry.logWithDate = this.logWithDate;
-      for (let logger of this.publishers) {
+      for (const logger of this.publishers) {
         logger.log(entry);
       }
     }
@@ -89,7 +89,7 @@ export class LogEntry {
     let ret = params.join(', \n');
     if (params.some((p) => typeof p === 'object')) {
       ret = '';
-      for (let item of params) {
+      for (const item of params) {
         ret += JSON.stringify(item) + ',';
       }
     }
