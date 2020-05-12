@@ -41,18 +41,12 @@ export class DropdownSearchComponent implements OnInit, OnDestroy {
   ngOnInit(): void {}
 
   ngOnDestroy(): void {
-    // Called once, before the instance is destroyed.
-    // Add 'implements OnDestroy' to the class.
     this.event$.next();
     this.event$.complete();
     this.searchData$.next();
     this.searchData$.complete();
   }
 
-  /**
-   * Focus on input to show search bar
-   * Also in this method we prepare everything for search
-   */
   showSearchBar(state: boolean): void {
     this.isOpen = state;
     if (state) {
@@ -74,10 +68,6 @@ export class DropdownSearchComponent implements OnInit, OnDestroy {
     }
   }
 
-  /**
-   * Method that doing search
-   * @param term is value that user write into input
-   */
   doSearch(term: string): void {
     if (term.length < 3) {
       this.showSearchData = false;
@@ -97,11 +87,6 @@ export class DropdownSearchComponent implements OnInit, OnDestroy {
     }
   }
 
-  /**
-   * On click chose value form the list and set that value to input
-   * @param data value form list
-   * @param setValue valeu that we need to set to getValue
-   */
   chooseValue(val: any): void {
     this.selectedVal = val.name;
     this.choosedVal.emit(val);

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ConfirmationModalComponent } from '@shared/component';
 import { Subject } from 'rxjs';
@@ -9,7 +9,7 @@ import { takeUntil } from 'rxjs/operators';
   templateUrl: './demo-library.component.html',
   styleUrls: ['./demo-library.component.scss'],
 })
-export class DemoLibraryComponent implements OnInit {
+export class DemoLibraryComponent implements OnInit, OnDestroy {
   // checkbox
   public checked = false;
   public singleCheckbox = { name: 'test', value: 1 };
@@ -51,25 +51,26 @@ export class DemoLibraryComponent implements OnInit {
   // end of dropdown search
 
   // paging
+  public pages = [
+    { value: 1, name: '10' },
+    { value: 2, name: '20' },
+    { value: 3, name: '50' },
+  ];
   public items: any = ['dasd', 'fsfsd', 'fsdfsdf', 'fsdfsdf', 'fsdfsdf'];
   public p = 1;
   public perPage = 10;
-  public count = 100; // this is total number of items, it's used to display pages and it should be set after you get list
+  public count = 100;
   // end of paging
 
   // loading button
   public isLoading = false;
   // end of loading button
 
-  constructor(
-    private modalService: BsModalService // for modal
-  ) {}
+  constructor(private modalService: BsModalService) {}
 
   ngOnInit(): void {}
 
   ngOnDestroy(): void {
-    //Called once, before the instance is destroyed.
-    //Add 'implements OnDestroy' to the class.
     this.modalValue$.next();
     this.modalValue$.complete();
   }
@@ -97,9 +98,6 @@ export class DemoLibraryComponent implements OnInit {
   // end of checkboxes
 
   // Confirmation Modal
-  /**
-   * Opening modal
-   */
   openConfirmationModal(): void {
     const initialState = {
       title: 'Delete User',

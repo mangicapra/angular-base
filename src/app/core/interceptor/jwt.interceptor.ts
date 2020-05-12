@@ -7,7 +7,7 @@ import {
   HttpHeaders,
 } from '@angular/common/http';
 
-import { Observable, Subject, empty } from 'rxjs';
+import { Observable, Subject, EMPTY } from 'rxjs';
 import { AuthService } from '../service/auth.service';
 import { catchError, tap, switchMap } from 'rxjs/operators';
 import { Refresh } from '../../module/auth/model/refresh';
@@ -57,8 +57,9 @@ export class JwtInterceptor implements HttpInterceptor {
   }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<any> {
-    if (this.authService.getToken)
+    if (this.authService.getToken) {
       request = JwtInterceptor.addToken(request, this.authService.getToken);
+    }
 
     return next.handle(request).pipe(
       catchError((error: HttpErrorResponse) => {
@@ -73,11 +74,11 @@ export class JwtInterceptor implements HttpInterceptor {
             }),
             catchError((err: any) => {
               this.authService.logOut();
-              return empty();
+              return EMPTY;
             })
           );
         }
-        return empty();
+        return EMPTY;
       })
     );
   }

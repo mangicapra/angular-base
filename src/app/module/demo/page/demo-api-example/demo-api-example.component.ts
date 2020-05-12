@@ -14,6 +14,11 @@ export class DemoApiExampleComponent implements OnInit, OnDestroy {
   public perPage = 10;
   public p = 1;
   public authors: Author[];
+  public pages = [
+    { value: 1, name: '10' },
+    { value: 2, name: '20' },
+    { value: 3, name: '50' },
+  ];
 
   private getAuthors$ = new Subject();
 
@@ -24,8 +29,8 @@ export class DemoApiExampleComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    //Called once, before the instance is destroyed.
-    //Add 'implements OnDestroy' to the class.
+    // Called once, before the instance is destroyed.
+    // Add 'implements OnDestroy' to the class.
     this.getAuthors$.next();
     this.getAuthors$.complete();
   }

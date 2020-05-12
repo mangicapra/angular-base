@@ -35,7 +35,6 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    // unsubscribe from all observables
     this.getLoginData$.next();
     this.getLoginData$.complete();
   }
@@ -57,8 +56,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         localStorage.setItem('role', tokens.id); // If you don't have roles in you application you can remove this line
         this.auth.setTokens(tokens.accessToken, tokens.refreshToken);
         this.returnUrl === null
-          ? // if there is no returnUrl navigate to where you want, this is put as example
-            this.router.navigateByUrl('/dashboard')
+          ? this.router.navigateByUrl('/dashboard')
           : this.router.navigateByUrl(this.returnUrl);
       });
   }

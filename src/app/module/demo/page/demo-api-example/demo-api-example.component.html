@@ -44,6 +44,8 @@
   </tbody>
 </table>
 <app-paging
+  [selectedPages]="'10'"
+  [pages]="pages"
   (perPageSelected)="handlePerPageChange($event)"
   (pageSelected)="handlePageChange($event)"
   *ngIf="authors?.length > 0"

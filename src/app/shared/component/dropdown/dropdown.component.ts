@@ -14,7 +14,7 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DropdownComponent implements OnInit {
-  @Input() items: any; // since structure can be unknown this is set to any
+  @Input() items: any;
   @Input() placeholder: string;
   @Input() initSelection;
   selectionInput;

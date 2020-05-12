@@ -4,6 +4,7 @@ import {
   Output,
   EventEmitter,
   ChangeDetectionStrategy,
+  Input,
 } from '@angular/core';
 
 @Component({
@@ -13,34 +14,23 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PagingComponent implements OnInit {
-  selectedItem = '10';
   isOpen = false;
+
+  @Input() selectedPages: string;
+  @Input() pages: { value: number; name: string }[];
 
   @Output() pageSelected = new EventEmitter();
   @Output() perPageSelected = new EventEmitter();
-
-  // change these values to fit your needs
-  pages: { value: number; name: string }[] = [
-    { value: 1, name: '10' },
-    { value: 2, name: '20' },
-    { value: 3, name: '50' },
-  ];
 
   constructor() {}
 
   ngOnInit(): void {}
 
-  /**
-   * Select ammout of items to be displayed per page
-   */
   selectOption(ev): void {
-    this.selectedItem = ev.name;
+    this.selectedPages = ev.name;
     this.perPageSelected.emit(ev);
   }
 
-  /**
-   * Change page
-   */
   handlePageChange(ev): void {
     this.pageSelected.emit(ev);
   }

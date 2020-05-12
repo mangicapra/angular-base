@@ -152,6 +152,8 @@
 </ul>
 
 <app-paging
+  [pages]="pages"
+  [selectedPages]="'10'"
   (perPageSelected)="handlePerPageChange($event)"
   (pageSelected)="handlePageChange($event)"
   *ngIf="items?.length > 0"

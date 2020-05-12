@@ -25,9 +25,6 @@ export class CheckboxComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  /**
-   * Handle checkbox change
-   */
   onCheckboxChange(ev, checkBox): void {
     this.checked.emit({ checked: ev.target.checked, checkBox });
   }

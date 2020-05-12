@@ -26,16 +26,10 @@ export class AuthService extends JsonApiDatastore {
     super(http);
   }
 
-  /**
-   * Get token from localStorage
-   */
   get getToken(): string {
     return localStorage.getItem('token');
   }
 
-  /**
-   * Get refresh token from localStorage
-   */
   get getRefreshToken(): string {
     return localStorage.getItem('refreshToken');
   }

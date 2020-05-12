@@ -13,7 +13,7 @@ const routes: Routes = [
     path: 'administration',
     loadChildren: () =>
       import('./module/admin/admin.module').then((mod) => mod.AdminModule),
-    data: { roles: ['Admin'] }, // pass roles which are able to access this module and also add them to roles.ts model
+    data: { roles: ['Admin'] },
     canActivate: [AuthGuard],
   },
   {
