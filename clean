@@ -1,4 +1,5 @@
 #!/bin/bash
 
-# rm -rf src/app/module/demo
+rm -rf src/app/module/demo
 
+sed -i '19,23d' src/app/app-routing.module.ts
