@@ -1,26 +1,25 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AuthGuard } from './guards/auth.guard';
-import { LoginGuard } from './guards/login.guard';
-import { LibraryComponent } from './library/library.component';
+import { AuthGuard, LoginGuard } from '@core/guard';
 
 const routes: Routes = [
   {
     path: '',
     loadChildren: () =>
-      import('./auth/auth.module').then((mod) => mod.AuthModule),
+      import('./module/auth/auth.module').then((mod) => mod.AuthModule),
     canActivate: [LoginGuard],
   },
   {
     path: 'administration',
     loadChildren: () =>
-      import('./admin/admin.module').then((mod) => mod.AdminModule),
-    data: { roles: ['Admin'] }, // pass roles which are able to access this module
+      import('./module/admin/admin.module').then((mod) => mod.AdminModule),
+    data: { roles: ['Admin'] },
     canActivate: [AuthGuard],
   },
   {
-    path: 'library',
-    component: LibraryComponent,
+    path: 'demo',
+    loadChildren: () =>
+      import('./module/demo/demo.module').then((mod) => mod.DemoModule),
   },
 ];
 

@@ -1,0 +1,124 @@
+<div class="paging">
+  <div class="paging__show">
+    <div
+      class="btn-group"
+      (isOpenChange)="isOpen = $event"
+      [insideClick]="false"
+      dropdown
+    >
+      <button
+        id="ddpagingtrigger"
+        [class.isOpen]="isOpen"
+        dropdownToggle
+        type="button"
+        class="dropdown-toggle"
+        aria-controls="ddpaging"
+      >
+        <span>{{ selectedPages }}</span>
+
+        <svg
+          *ngIf="!isOpen; else close"
+          xmlns="http://www.w3.org/2000/svg"
+          width="11.764"
+          height="10"
+          viewBox="0 0 11.764 10"
+        >
+          <defs>
+            <style>
+              .arrow,
+              .arrowb {
+                fill: none;
+              }
+
+              .arrowb {
+                stroke: #595346;
+                stroke-linecap: round;
+                stroke-linejoin: round;
+                stroke-width: 2px;
+              }
+            </style>
+          </defs>
+          <g transform="translate(0.981 0.211)">
+            <rect
+              class="arrow"
+              width="10"
+              height="10"
+              transform="translate(0 -0.211)"
+            />
+            <path
+              class="arrowb"
+              d="M6,9l4.468,4.468L14.936,9"
+              transform="translate(-5.567 -5.677)"
+            />
+          </g>
+        </svg>
+
+        <ng-template #close>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="11.764"
+            height="10"
+            viewBox="0 0 11.764 10"
+          >
+            <defs>
+              <style>
+                .arrow,
+                .arrowb {
+                  fill: none;
+                }
+
+                .arrowb {
+                  stroke: #595346;
+                  stroke-linecap: round;
+                  stroke-linejoin: round;
+                  stroke-width: 2px;
+                }
+              </style>
+            </defs>
+            <g transform="translate(10.783 9.789) rotate(180)">
+              <rect
+                class="arrow"
+                width="10"
+                height="10"
+                transform="translate(0 -0.211)"
+              />
+              <path
+                class="arrowb"
+                d="M6,9l4.468,4.468L14.936,9"
+                transform="translate(-5.567 -5.677)"
+              />
+            </g>
+          </svg>
+        </ng-template>
+      </button>
+
+      <ul
+        id="ddpaging"
+        *dropdownMenu
+        class="dropdown-menu"
+        role="menu"
+        aria-labelledby="ddpagingtrigger"
+      >
+        <li
+          *ngFor="let page of pages"
+          (click)="selectOption(page)"
+          class="position-relative"
+          role="menuitem"
+        >
+          {{ page.name }}
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <pagination-controls
+    previousLabel=""
+    nextLabel=""
+    (pageChange)="handlePageChange($event)"
+  ></pagination-controls>
+
+  <div class="paging__jump">
+    <span>Go to page:</span>
+    <input #goTo (input)="handlePageChange(goTo.value)" type="number" />
+  </div>
+</div>

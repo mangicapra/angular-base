@@ -1,0 +1,167 @@
+<h3>Checkbox</h3>
+<ul>
+  <li>
+    Single checkbox
+    <app-checkbox
+      (checked)="handleSingleCheckbox($event)"
+      [checkBox]="singleCheckbox"
+    ></app-checkbox>
+    <small>*you can check if checkbox is checked or not: {{ checked }}</small>
+  </li>
+  <li>
+    Pass checked property
+    <app-checkbox
+      [checkBox]="singleCheckbox"
+      [isChecked]="isChecked"
+    ></app-checkbox>
+    <small>*you can pass initial value with [isChecked]</small>
+  </li>
+  <li>
+    Inside loop
+    <app-checkbox
+      *ngFor="let box of boxes"
+      (checked)="handleMultiCheckbox($event)"
+      [checkBox]="box"
+    ></app-checkbox>
+    <small
+      >*you can use it inside loop. Selected items
+      {{ selectedBoxes | json }}</small
+    >
+  </li>
+</ul>
+<hr />
+<h3>Confirmation modal</h3>
+<p>
+  This one can be used throughout the application as long as it fits style and
+  your needs
+</p>
+<button (click)="openConfirmationModal()">Modal</button>
+<br />
+<small
+  >* use it for all kind of scenarios where you need simple yes/no
+  response</small
+>
+<hr />
+<h3>Dropdown</h3>
+<p>
+  This component will use whole width so you need to put it inside container
+</p>
+<ul>
+  <li>
+    pass items
+    <div class="dropdown">
+      <app-dropdown
+        (selectValue)="handleSelect($event)"
+        [items]="dropdownItems"
+      ></app-dropdown>
+    </div>
+    Selected: {{ ddSelection | json }}
+  </li>
+  <li>
+    pass placeholder
+    <div class="dropdown">
+      <app-dropdown
+        [placeholder]="'Select Value'"
+        [items]="dropdownItems"
+      ></app-dropdown>
+    </div>
+  </li>
+  <li>
+    place initial value
+    <div class="dropdown">
+      <app-dropdown
+        [initSelection]="initSelection"
+        [items]="dropdownItems"
+      ></app-dropdown>
+    </div>
+  </li>
+</ul>
+<hr />
+<h3>Search</h3>
+<p>
+  This component will use whole width so you need to put it inside container
+</p>
+<ul>
+  <li>
+    you can enter placeholder
+    <div class="search">
+      <app-search [placeholder]="'Enter term'"></app-search>
+    </div>
+  </li>
+  <li>
+    <div class="search">
+      <app-search
+        [searchInitValue]="searchTerm"
+        (enteredTerm)="handleSearch($event)"
+      ></app-search>
+    </div>
+    Entered: {{ searchTerm }}
+  </li>
+  <li>
+    you can set innitial value of your search
+    <div class="search">
+      <app-search
+        [searchInitValue]="predefinedVal"
+        (enteredTerm)="handlePredefined($event)"
+      ></app-search>
+    </div>
+    Entered: {{ predefinedVal }}
+  </li>
+</ul>
+<hr />
+<h3>Dropdown with search</h3>
+<p>
+  This component will use whole width so you need to put it inside container
+</p>
+<ul>
+  <li>
+    Placeholder
+    <div class="ddsearch">
+      <app-dropdown-search
+        [placeholder]="'Select something'"
+      ></app-dropdown-search>
+    </div>
+  </li>
+  <li>
+    Initial value
+    <div class="ddsearch">
+      <app-dropdown-search [selectedVal]="'First item'"></app-dropdown-search>
+    </div>
+  </li>
+  <li>
+    <div class="ddsearch">
+      <app-dropdown-search
+        [selectedVal]="selectedVal"
+        (choosedCity)="handleDropdownSearchSelect($event)"
+        [placeholder]="'Select something'"
+      ></app-dropdown-search>
+    </div>
+  </li>
+</ul>
+<hr />
+<h3>Paging</h3>
+<p>To make paging work you must add `paginate` pipe</p>
+
+<ul>
+  <li
+    *ngFor="
+      let item of items
+        | paginate: { itemsPerPage: perPage, currentPage: p, totalItems: count }
+    "
+  ></li>
+</ul>
+
+<app-paging
+  [pages]="pages"
+  [selectedPages]="'10'"
+  (perPageSelected)="handlePerPageChange($event)"
+  (pageSelected)="handlePageChange($event)"
+  *ngIf="items?.length > 0"
+></app-paging>
+<hr />
+<h3>Loading button</h3>
+<button (click)="load()" [appButtonLoader]="isLoading">
+  <span>Load</span>
+</button>
+
+<hr />

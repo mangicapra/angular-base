@@ -1,2 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
 @import '../node_modules/bootstrap/scss/bootstrap.scss';
+
+// reset styles
+* {
+  outline: none;
+}
+
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input::-ms-clear {
+  display: none;
+}
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+
+input::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+}

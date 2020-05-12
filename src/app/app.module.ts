@@ -4,20 +4,19 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { JsonApiModule } from 'angular2-jsonapi';
-import { LibraryComponent } from './library/library.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { SharedModule } from './shared/shared.module'; // delete this import
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { CommonModule } from '@angular/common';
+import { CoreModule } from '@core/core.module';
 
 @NgModule({
-  declarations: [AppComponent, LibraryComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
+    CoreModule,
     AppRoutingModule,
-    BrowserAnimationsModule,
+    CommonModule,
     JsonApiModule,
-    SharedModule, // delete this module, this is here only for library showcase
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
     }),
