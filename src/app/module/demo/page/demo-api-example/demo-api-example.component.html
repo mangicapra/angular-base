@@ -1,3 +1,13 @@
+<div class="ddWrapper">
+  <app-dropdown-search
+    [selectedVal]="selectedVal"
+    (enteredTerm)="handleEnteredTerm($event)"
+    (choosedVal)="handleDropdownSearchSelect($event)"
+    [placeholder]="'Select something'"
+    [searchList]="searchList"
+  ></app-dropdown-search>
+</div>
+
 <table class="table">
   <thead>
     <tr>
