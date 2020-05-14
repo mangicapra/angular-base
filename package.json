@@ -6,11 +6,15 @@
     "start": "ng serve",
     "build": "ng build -dop false",
     "test": "ng test",
-    "format:fix": "pretty-quick --staged",
-    "precommit": "run-s format:fix lint",
-    "lint": "ng lint",
     "e2e": "ng e2e",
     "clean": "./clean"
+  },
+  "husky": {
+    "hooks": {
+      "format:fix": "pretty-quick --staged",
+      "precommit": "run-s format:fix lint",
+      "lint": "ng lint"
+    }
   },
   "private": true,
   "dependencies": {
