@@ -140,15 +140,6 @@ export class DemoLibraryComponent implements OnInit, OnDestroy {
   }
   // end of search
 
-  // Dropdown search
-  handleDropdownSearchSelect(ev): void {
-    // if you have api call with search param trigger it here
-    // also if you have paging set it to 1
-    // ev will be whole object that you received from search result and selection
-    this.selectedVal = ev.name;
-  }
-  // end of dropdown search
-
   // paging
   handlePerPageChange(ev): void {
     // trigger api call with new perPage param

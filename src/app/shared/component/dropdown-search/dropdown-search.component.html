@@ -97,11 +97,14 @@
         <img src="assets/images/x.svg" alt="Clear" />
       </span>
     </div>
-    <div class="search-result" *ngIf="showSearchData">
-      <p *ngFor="let val of values" (click)="chooseValue(val)">
+    <div class="search-result">
+      <p
+        *ngFor="let val of searchList"
+        (click)="chooseValue(val); search.value = ''"
+      >
         {{ val.name }}
       </p>
-      <p class="noRes" *ngIf="values.length > 0">
+      <p class="noRes" *ngIf="searchList && searchList.length === 0">
         There are no results for your search.
       </p>
     </div>

@@ -8,6 +8,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { CommonModule } from '@angular/common';
 import { CoreModule } from '@core/core.module';
+import { LogService, LogPublishersService } from '@shared/service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,7 +22,7 @@ import { CoreModule } from '@core/core.module';
       enabled: environment.production,
     }),
   ],
-  providers: [],
+  providers: [LogService, LogPublishersService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

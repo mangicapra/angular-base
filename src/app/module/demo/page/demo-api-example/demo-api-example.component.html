@@ -1,3 +1,13 @@
+<div class="ddWrapper">
+  <app-dropdown-search
+    [selectedVal]="selectedVal"
+    (enteredTerm)="handleEnteredTerm($event)"
+    (choosedVal)="handleDropdownSearchSelect($event)"
+    [placeholder]="'Select something'"
+    [searchList]="searchList"
+  ></app-dropdown-search>
+</div>
+
 <table class="table">
   <thead>
     <tr>
@@ -44,6 +54,7 @@
   </tbody>
 </table>
 <app-paging
+  [parts]="'jp'"
   [selectedPages]="'10'"
   [pages]="pages"
   (perPageSelected)="handlePerPageChange($event)"

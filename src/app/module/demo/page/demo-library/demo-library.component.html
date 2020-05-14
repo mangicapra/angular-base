@@ -129,18 +129,15 @@
     </div>
   </li>
   <li>
-    <div class="ddsearch">
-      <app-dropdown-search
-        [selectedVal]="selectedVal"
-        (choosedCity)="handleDropdownSearchSelect($event)"
-        [placeholder]="'Select something'"
-      ></app-dropdown-search>
-    </div>
+    For complete implementation check json-api demo
   </li>
 </ul>
 <hr />
 <h3>Paging</h3>
-<p>To make paging work you must add `paginate` pipe</p>
+<p>
+  To make paging work you must add `paginate` pipe, for full implementation
+  check <a routerLink="/demo/json-api">json-api demo </a>
+</p>
 
 <ul>
   <li
@@ -151,7 +148,14 @@
   ></li>
 </ul>
 
+<p>
+  By default page numbers are shown, you can further specify if you wish to have
+  jump to and per page parts shown, this is done via 'parts' input. You just
+  need to pass string that contains j - jump to, p - per page or both
+</p>
+
 <app-paging
+  [parts]="'jp'"
   [pages]="pages"
   [selectedPages]="'10'"
   (perPageSelected)="handlePerPageChange($event)"
