@@ -10,19 +10,19 @@ const routes: Routes = [
     children: [
       {
         path: 'dashboard',
-        component: DashboardComponent,
+        component: DashboardComponent
       },
       {
         path: '**',
         redirectTo: 'dashboard',
-        pathMatch: 'full',
-      },
-    ],
-  },
+        pathMatch: 'full'
+      }
+    ]
+  }
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
+  exports: [RouterModule]
 })
 export class AdminRoutingModule {}

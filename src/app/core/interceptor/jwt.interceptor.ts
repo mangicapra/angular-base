@@ -1,11 +1,5 @@
 import { Injectable } from '@angular/core';
-import {
-  HttpRequest,
-  HttpHandler,
-  HttpInterceptor,
-  HttpErrorResponse,
-  HttpHeaders,
-} from '@angular/common/http';
+import { HttpRequest, HttpHandler, HttpInterceptor, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 
 import { Observable, Subject, EMPTY } from 'rxjs';
 import { AuthService } from '../service/auth.service';
@@ -26,8 +20,8 @@ export class JwtInterceptor implements HttpInterceptor {
 
     return req.clone({
       setHeaders: {
-        Authorization: `Bearer ${tokenData}`,
-      },
+        Authorization: `Bearer ${tokenData}`
+      }
     });
   }
 
@@ -45,7 +39,7 @@ export class JwtInterceptor implements HttpInterceptor {
       return REFRESH.save(
         {},
         new HttpHeaders({
-          Authorization: `Bearer ${this.authService.getRefreshToken}`,
+          Authorization: `Bearer ${this.authService.getRefreshToken}`
         })
       ).pipe(
         tap((token) => {
@@ -67,10 +61,7 @@ export class JwtInterceptor implements HttpInterceptor {
         if (error.status === 401 && !/login/.test(request.url)) {
           return this.refreshAccessToken().pipe(
             switchMap(() => {
-              request = JwtInterceptor.addToken(
-                request,
-                this.authService.getToken
-              );
+              request = JwtInterceptor.addToken(request, this.authService.getToken);
               return next.handle(request);
             }),
             catchError((err: any) => {
@@ -79,12 +70,7 @@ export class JwtInterceptor implements HttpInterceptor {
             })
           );
         }
-        this.logger.error(
-          'Error while making request',
-          error.url,
-          error.message,
-          error.error
-        );
+        this.logger.error('Error while making request', error.url, error.message, error.error);
         return EMPTY;
       })
     );

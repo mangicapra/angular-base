@@ -8,6 +8,6 @@ import { ChangePasswordComponent } from './page/change-password/change-password.
 
 @NgModule({
   declarations: [AuthComponent, LoginComponent, ChangePasswordComponent],
-  imports: [CommonModule, AuthRoutingModule, SharedModule],
+  imports: [CommonModule, AuthRoutingModule, SharedModule]
 })
 export class AuthModule {}

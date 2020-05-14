@@ -2,7 +2,7 @@ import { JsonApiModelConfig, JsonApiModel, Attribute } from 'angular2-jsonapi';
 
 @JsonApiModelConfig({
   type: 'auths',
-  modelEndpointUrl: 'refresh',
+  modelEndpointUrl: 'refresh'
 })
 export class Refresh extends JsonApiModel {
   @Attribute()

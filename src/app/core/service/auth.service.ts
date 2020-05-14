@@ -1,10 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import {
-  DatastoreConfig,
-  JsonApiDatastoreConfig,
-  JsonApiDatastore,
-} from 'angular2-jsonapi';
+import { DatastoreConfig, JsonApiDatastoreConfig, JsonApiDatastore } from 'angular2-jsonapi';
 import { environment } from 'src/environments/environment';
 import { Login, roles, Refresh } from '../../module/auth/model';
 import { HttpClient } from '@angular/common/http';
@@ -13,12 +9,12 @@ const config: DatastoreConfig = {
   baseUrl: `${environment.baseUrl}/auth`,
   models: {
     login: Login,
-    refresh: Refresh,
-  },
+    refresh: Refresh
+  }
 };
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 @JsonApiDatastoreConfig(config)
 export class AuthService extends JsonApiDatastore {

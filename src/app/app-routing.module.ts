@@ -6,22 +6,22 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: () => import('./module/auth/auth.module').then((mod) => mod.AuthModule),
-    canActivate: [LoginGuard],
+    canActivate: [LoginGuard]
   },
   {
     path: 'administration',
     loadChildren: () => import('./module/admin/admin.module').then((mod) => mod.AdminModule),
     data: { roles: ['Admin'] },
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard]
   },
   {
     path: 'demo',
-    loadChildren: () => import('./module/demo/demo.module').then((mod) => mod.DemoModule),
-  },
+    loadChildren: () => import('./module/demo/demo.module').then((mod) => mod.DemoModule)
+  }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule],
+  exports: [RouterModule]
 })
 export class AppRoutingModule {}

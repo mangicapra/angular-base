@@ -11,18 +11,18 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: LoginComponent,
+        component: LoginComponent
       },
       {
         path: 'change-password',
-        component: ChangePasswordComponent,
-      },
-    ],
-  },
+        component: ChangePasswordComponent
+      }
+    ]
+  }
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
+  exports: [RouterModule]
 })
 export class AuthRoutingModule {}

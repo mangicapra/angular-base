@@ -9,10 +9,7 @@ import { AuthService } from './service/auth.service';
   declarations: [],
   imports: [CommonModule],
   exports: [BrowserAnimationsModule, HttpClientModule],
-  providers: [
-    AuthService,
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-  ],
+  providers: [AuthService, { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }]
 })
 export class CoreModule {
   constructor(@Optional() @SkipSelf() core: CoreModule) {
