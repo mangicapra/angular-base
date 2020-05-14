@@ -32,7 +32,7 @@ To implement local loader check `/demo/library` for it's implementation and also
 
 ## Clean code
 
-After you've examined everything, clean up a code
+After you've examined everything, clean up a code. To do that just run command `npm run clean`.
 
 ## Development server
 

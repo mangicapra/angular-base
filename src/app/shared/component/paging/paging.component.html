@@ -1,5 +1,5 @@
 <div class="paging">
-  <div class="paging__show">
+  <div *ngIf="toShow('p')" class="paging__show">
     <div
       class="btn-group"
       (isOpenChange)="isOpen = $event"
@@ -117,7 +117,7 @@
     (pageChange)="handlePageChange($event)"
   ></pagination-controls>
 
-  <div class="paging__jump">
+  <div *ngIf="toShow('j')" class="paging__jump">
     <span>Go to page:</span>
     <input #goTo (input)="handlePageChange(goTo.value)" type="number" />
   </div>
