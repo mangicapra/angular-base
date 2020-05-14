@@ -5,21 +5,18 @@ import { AuthGuard, LoginGuard } from '@core/guard';
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () =>
-      import('./module/auth/auth.module').then((mod) => mod.AuthModule),
+    loadChildren: () => import('./module/auth/auth.module').then((mod) => mod.AuthModule),
     canActivate: [LoginGuard],
   },
   {
     path: 'administration',
-    loadChildren: () =>
-      import('./module/admin/admin.module').then((mod) => mod.AdminModule),
+    loadChildren: () => import('./module/admin/admin.module').then((mod) => mod.AdminModule),
     data: { roles: ['Admin'] },
     canActivate: [AuthGuard],
   },
   {
     path: 'demo',
-    loadChildren: () =>
-      import('./module/demo/demo.module').then((mod) => mod.DemoModule),
+    loadChildren: () => import('./module/demo/demo.module').then((mod) => mod.DemoModule),
   },
 ];
 
