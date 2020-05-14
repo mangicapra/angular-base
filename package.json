@@ -7,13 +7,13 @@
     "build": "ng build -dop false",
     "test": "ng test",
     "e2e": "ng e2e",
-    "clean": "./clean"
+    "clean": "./clean",
+    "format:fix": "pretty-quick --staged",
+    "lint": "ng lint"
   },
   "husky": {
     "hooks": {
-      "format:fix": "pretty-quick --staged",
-      "precommit": "run-s format:fix lint",
-      "lint": "ng lint"
+      "precommit": "run-s format:fix lint"
     }
   },
   "private": true,
