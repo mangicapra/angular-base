@@ -8,12 +8,12 @@
     "test": "ng test",
     "e2e": "ng e2e",
     "clean": "./clean",
-    "format:fix": "pretty-quick",
     "lint": "ng lint"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "pretty-quick --staged && ng lint"
+        "pre-commit": "pretty-quick --staged && ng lint",
+        "pre-push": "ng build --aot true"
     }
   },
   "private": true,
@@ -58,6 +58,7 @@
     "protractor": "~5.4.0",
     "ts-node": "~7.0.0",
     "tslint": "~5.15.0",
+    "tslint-config-prettier": "^1.18.0",
     "typescript": "~3.8.3"
   }
 }

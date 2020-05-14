@@ -3,7 +3,7 @@ import { LogLevel, LogPublisher } from '@shared/model';
 import { LogPublishersService } from './log-publishers.service';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class LogService {
   private level: LogLevel = LogLevel.All;
@@ -53,10 +53,7 @@ export class LogService {
 
   private shouldLog(level: LogLevel): boolean {
     let ret = false;
-    if (
-      (level >= this.level && level !== LogLevel.Off) ||
-      this.level === LogLevel.All
-    ) {
+    if ((level >= this.level && level !== LogLevel.Off) || this.level === LogLevel.All) {
       ret = true;
     }
     return ret;
@@ -74,7 +71,7 @@ export class LogEntry {
     let ret = '';
 
     if (this.logWithDate) {
-      ret = new Date() + ' - ';
+      ret = `${new Date()} - `;
     }
     ret += `Type: ${LogLevel[this.level]}`;
     ret += ` - Message: ${this.message}`;
@@ -90,7 +87,7 @@ export class LogEntry {
     if (params.some((p) => typeof p === 'object')) {
       ret = '';
       for (const item of params) {
-        ret += JSON.stringify(item) + ',';
+        ret += `${JSON.stringify(item)},`;
       }
     }
 
