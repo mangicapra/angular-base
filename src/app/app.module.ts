@@ -19,10 +19,10 @@ import { LogService, LogPublishersService } from '@shared/service';
     CommonModule,
     JsonApiModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
-      enabled: environment.production,
-    }),
+      enabled: environment.production
+    })
   ],
   providers: [LogService, LogPublishersService],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent]
 })
 export class AppModule {}
