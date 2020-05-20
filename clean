@@ -2,4 +2,4 @@
 
 rm -rf src/app/module/demo
 
-sed -i '19,23d' src/app/app-routing.module.ts
+sed -i '17,20d' src/app/app-routing.module.ts

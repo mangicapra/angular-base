@@ -71,7 +71,7 @@ export class JwtInterceptor implements HttpInterceptor {
           );
         }
         this.logger.error('Error while making request', error.url, error.message, error.error);
-        return EMPTY;
+        throw error;
       })
     );
   }
